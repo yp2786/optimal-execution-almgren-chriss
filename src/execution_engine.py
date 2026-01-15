@@ -14,7 +14,7 @@ class AlmgrenChrissOptimizer:
         """Finds the optimal trade list using Quadratic Programming."""
         n = cp.Variable(self.N)
         # Inventory at each step
-        x = self.X - cp.cumsum(cp.vstack([0, cp.reshape(n[:-1], (self.N-1, 1))]))
+        x = self.X - cp.cumsum(n)
         
         # Objective: E[Cost] + lambda * Var[Cost]
         # E[Cost] approx sum(eta/tau * n^2 + 0.5 * gamma * n^2)
